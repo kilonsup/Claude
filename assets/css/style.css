@@ -342,7 +342,7 @@ h1, h2, h3, h4 {
 }
 .work .container { position: relative; }
 
-.work__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.work__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
 .project-card {
   background: rgba(255,255,255,0.03);
@@ -395,6 +395,7 @@ h1, h2, h3, h4 {
 .stats { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); padding: 56px 0; }
 .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
 .stat { display: flex; flex-direction: column; align-items: center; color: var(--navy-950); }
+.stat__value { display: block; }
 .stat__num, .stat__suffix { font-family: var(--ff-display); font-size: clamp(32px, 4vw, 46px); font-weight: 800; display: inline; }
 .stat__label { font-size: 14px; font-weight: 600; margin-top: 6px; color: rgba(13,17,23,0.72); }
 
@@ -485,6 +486,7 @@ h1, h2, h3, h4 {
   padding: 32px 28px;
 }
 .testimonial .stars { display: block; margin-bottom: 16px; font-size: 15px; }
+.testimonial__tag { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; }
 .testimonial__quote { color: rgba(250,249,246,0.85); font-size: 15.5px; margin-bottom: 24px; }
 .testimonial footer { display: flex; flex-direction: column; font-size: 13.5px; }
 .testimonial footer strong { color: #fff; margin-bottom: 2px; }

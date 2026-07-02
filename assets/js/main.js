@@ -81,12 +81,12 @@ contactForm.addEventListener('submit', (e) => {
   const data = new FormData(contactForm);
   const name = data.get('name');
   const phone = data.get('phone');
-  const propertyType = data.get('propertyType');
+  const inquiryType = data.get('inquiryType');
   const message = data.get('message');
 
-  const subject = encodeURIComponent(`Facility Management Quote Request — ${name}`);
+  const subject = encodeURIComponent(`${inquiryType} — ${name}`);
   const body = encodeURIComponent(
-    `Name: ${name}\nPhone: ${phone}\nProperty Type: ${propertyType}\n\nMessage:\n${message}`
+    `Name: ${name}\nContact: ${phone}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`
   );
 
   window.location.href = `mailto:gerald.ukor@gmail.com?subject=${subject}&body=${body}`;
