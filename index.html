@@ -13,11 +13,14 @@
 </head>
 <body>
 
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- ============ NAVBAR ============ -->
 <header class="navbar" id="navbar">
   <div class="container navbar__inner">
     <a href="#home" class="navbar__logo">
-      <span class="navbar__logo-mark">GU</span>
+      <img src="assets/img/gerald-mark.jpg" alt="Gerald Ukor" class="navbar__logo-mark">
       <span class="navbar__logo-text">Gerald Ukor<small>Facilities &amp; Sustainability Executive</small></span>
     </a>
 
@@ -45,11 +48,16 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
-  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__aurora hero__aurora--1"></div>
+    <div class="hero__aurora hero__aurora--2"></div>
+    <div class="hero__aurora hero__aurora--3"></div>
+  </div>
+  <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
   <div class="container hero__inner">
     <div class="hero__content reveal">
       <span class="eyebrow">Facilities &amp; Sustainability Executive · 14+ Years</span>
-      <h1>Operational Reliability for Institutions Where Downtime Isn&rsquo;t an Option.</h1>
+      <h1 class="split-lines" id="heroHeadline">Operational Reliability for Institutions Where Downtime Isn&rsquo;t an Option.</h1>
       <p class="hero__sub">
         I lead facilities and sustainability operations for organisations operating at
         national-scale stakes &mdash; a 500-bed quaternary hospital, Nigeria&rsquo;s central
@@ -58,11 +66,11 @@
       </p>
 
       <div class="hero__actions">
-        <a href="#contact" class="btn btn--primary btn--lg">
+        <a href="#contact" class="btn btn--primary btn--lg magnetic">
           <svg viewBox="0 0 24 24" class="icon"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.3l8 5.3 8-5.3V6H4zm16 2.4-7.4 4.9a1 1 0 0 1-1.2 0L4 8.4V18h16V8.4z"/></svg>
           Start a Conversation
         </a>
-        <a href="https://wa.me/2347031813005" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+        <a href="https://wa.me/2347031813005" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg magnetic">
           <svg viewBox="0 0 24 24" class="icon"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.2.2-.3.2-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
           WhatsApp Me
         </a>
@@ -77,23 +85,25 @@
       </div>
     </div>
 
-    <div class="hero__card reveal" aria-hidden="true">
-      <div class="hero__card-glow"></div>
-      <div class="hero__card-badge">
-        <span class="hero__card-badge-num">96.74%</span>
-        <span class="hero__card-badge-label">Board-Reported Job Completion Rate</span>
-      </div>
-      <div class="hero__card-row">
-        <span>mMBA &amp; IFMA RFM Certified</span><span class="check">✓</span>
-      </div>
-      <div class="hero__card-row">
-        <span>8,554 Civil Assets Managed (SAP PM)</span><span class="check">✓</span>
-      </div>
-      <div class="hero__card-row">
-        <span>99.9% PPM Compliance</span><span class="check">✓</span>
-      </div>
-      <div class="hero__card-row">
-        <span>&lt;5% Critical Infrastructure Downtime</span><span class="check">✓</span>
+    <div class="hero__card-parallax" data-parallax="0.15">
+      <div class="hero__card reveal" aria-hidden="true">
+        <div class="hero__card-glow"></div>
+        <div class="hero__card-badge">
+          <span class="hero__card-badge-num">96.74%</span>
+          <span class="hero__card-badge-label">Board-Reported Job Completion Rate</span>
+        </div>
+        <div class="hero__card-row">
+          <span>mMBA &amp; IFMA RFM Certified</span><span class="check">✓</span>
+        </div>
+        <div class="hero__card-row">
+          <span>8,554 Civil Assets Managed (SAP PM)</span><span class="check">✓</span>
+        </div>
+        <div class="hero__card-row">
+          <span>99.9% PPM Compliance</span><span class="check">✓</span>
+        </div>
+        <div class="hero__card-row">
+          <span>&lt;5% Critical Infrastructure Downtime</span><span class="check">✓</span>
+        </div>
       </div>
     </div>
   </div>
@@ -185,7 +195,8 @@
 
     <div class="work__grid">
       <article class="project-card reveal">
-        <div class="project-card__media project-card__media--photo project-card__media--amce">
+        <div class="project-card__media project-card__media--photo project-card__media--amce img-reveal">
+          <div class="img-reveal__mask" aria-hidden="true"></div>
           <span class="project-card__tag">Healthcare &middot; Current</span>
         </div>
         <div class="project-card__body">
@@ -201,7 +212,8 @@
       </article>
 
       <article class="project-card reveal">
-        <div class="project-card__media project-card__media--photo project-card__media--cbn">
+        <div class="project-card__media project-card__media--photo project-card__media--cbn img-reveal">
+          <div class="img-reveal__mask" aria-hidden="true"></div>
           <span class="project-card__tag">Financial Infrastructure</span>
         </div>
         <div class="project-card__body">
@@ -262,7 +274,8 @@
 <section class="about" id="about">
   <div class="container about__inner">
     <div class="about__visual reveal" aria-hidden="true">
-      <div class="about__visual-card">
+      <div class="about__visual-card img-reveal" data-parallax="0.08">
+        <div class="img-reveal__mask" aria-hidden="true"></div>
         <img src="assets/img/gerald-ukor.jpg" alt="Gerald Chijioke Ukor" class="about__photo">
       </div>
       <div class="about__visual-tag about__visual-tag--1">mMBA</div>
@@ -394,7 +407,7 @@
           <span class="contact__method-icon">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
           </span>
-          <span><strong>Call or Text</strong><small>+234 703 181 3005</small></span>
+          <span><strong>Call</strong><small>+234 703 181 3005</small></span>
         </a>
         <a href="https://wa.me/2347031813005" target="_blank" rel="noopener" class="contact__method">
           <span class="contact__method-icon">
@@ -453,7 +466,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <span class="navbar__logo-mark">GU</span>
+      <img src="assets/img/gerald-mark.jpg" alt="Gerald Ukor" class="navbar__logo-mark">
       <div>
         <strong>Gerald Ukor</strong>
         <p>Facilities &amp; Sustainability Executive</p>
