@@ -380,6 +380,17 @@ h1, h2, h3, h4 {
 }
 .project-card__media--amce { background-image: url('../img/amce-abuja.jpg'); }
 .project-card__media--cbn { background-image: url('../img/cbn-abuja.jpg'); }
+.project-card__logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; height: 100px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 14px;
+  box-shadow: var(--shadow-md);
+}
 .project-card__tag {
   position: relative;
   background: rgba(10,22,40,0.55);
