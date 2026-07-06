@@ -91,7 +91,7 @@ contactForm.addEventListener('submit', (e) => {
     `Name: ${name}\nContact: ${phone}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`
   );
 
-  window.location.href = `mailto:gerald.ukor@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:gerald@geraldukor.com?subject=${subject}&body=${body}`;
 
   formNote.textContent = 'Opening your email client to send this request...';
   formNote.classList.add('is-success');
