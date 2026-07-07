@@ -749,6 +749,17 @@ h1, h2, h3, h4 {
 .resource-card p { font-size: 14.5px; color: var(--slate); margin-bottom: 14px; }
 .resource-card__meta { font-size: 12.5px; color: var(--gold-dark); font-weight: 600; margin-bottom: 20px; }
 .resource-card .btn { margin-top: auto; }
+.book-promo {
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  margin-top: 30px;
+  background: var(--navy-950);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+}
+.book-promo__badge { color: var(--gold-light); background: rgba(228,199,102,0.14); border-color: rgba(228,199,102,0.3); margin-bottom: 14px; }
+.book-promo__text h3 { color: #fff; font-size: 22px; margin-bottom: 10px; }
+.book-promo__text p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0; }
+.book-promo .btn--lg { flex-shrink: 0; white-space: nowrap; }
 
 /* ===========================================================
    CONTACT / FINAL CTA
@@ -886,6 +897,8 @@ h1, h2, h3, h4 {
   .process__grid { grid-template-columns: 1fr; }
   .cert__grid { grid-template-columns: 1fr; }
   .resources__grid { grid-template-columns: 1fr; }
+  .book-promo { flex-direction: column; align-items: flex-start; padding: 32px 26px; }
+  .book-promo .btn--lg { width: 100%; text-align: center; }
   .form-row { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr; }
   .sticky-cta { display: flex; }
