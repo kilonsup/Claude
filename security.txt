@@ -1,0 +1,4 @@
+Contact: mailto:gerald@geraldukor.com
+Expires: 2027-07-07T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://geraldukor.com/.well-known/security.txt
