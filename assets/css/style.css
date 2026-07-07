@@ -115,6 +115,8 @@ h1, h2, h3, h4 {
 .cert__grid .reveal:nth-child(8) { transition-delay: .42s; }
 .resources__grid .reveal:nth-child(1) { transition-delay: 0s; }
 .resources__grid .reveal:nth-child(2) { transition-delay: .12s; }
+.resources__grid .reveal:nth-child(3) { transition-delay: .24s; }
+.resources__grid .reveal:nth-child(4) { transition-delay: .36s; }
 
 /* ---------- Scroll progress bar ---------- */
 .scroll-progress {
