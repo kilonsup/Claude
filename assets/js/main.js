@@ -68,11 +68,26 @@ window.addEventListener('scroll', () => {
   navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 20px rgba(0,0,0,0.15)' : 'none';
 });
 
-// ===== Contact form (mailto handoff — no backend attached) =====
+// ===== Contact form (Web3Forms, with mailto fallback if the request fails) =====
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+const formSubmitBtn = contactForm.querySelector('button[type="submit"]');
 
-contactForm.addEventListener('submit', (e) => {
+function mailtoFallback() {
+  const data = new FormData(contactForm);
+  const name = data.get('name');
+  const phoneOrEmail = data.get('phone_or_email');
+  const inquiryType = data.get('inquiry_type');
+  const message = data.get('message');
+
+  const subject = encodeURIComponent(`${inquiryType} — ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\nContact: ${phoneOrEmail}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`
+  );
+  window.location.href = `mailto:gerald@geraldukor.com?subject=${subject}&body=${body}`;
+}
+
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   if (!contactForm.checkValidity()) {
@@ -80,22 +95,32 @@ contactForm.addEventListener('submit', (e) => {
     return;
   }
 
-  const data = new FormData(contactForm);
-  const name = data.get('name');
-  const phone = data.get('phone');
-  const inquiryType = data.get('inquiryType');
-  const message = data.get('message');
+  formSubmitBtn.disabled = true;
+  formNote.textContent = 'Sending...';
+  formNote.classList.remove('is-success', 'is-error');
 
-  const subject = encodeURIComponent(`${inquiryType} — ${name}`);
-  const body = encodeURIComponent(
-    `Name: ${name}\nContact: ${phone}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`
-  );
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+    });
+    const result = await response.json();
 
-  window.location.href = `mailto:gerald@geraldukor.com?subject=${subject}&body=${body}`;
-
-  formNote.textContent = 'Opening your email client to send this request...';
-  formNote.classList.add('is-success');
-  contactForm.reset();
+    if (result.success) {
+      formNote.textContent = 'Message sent — I personally review and respond to every inquiry.';
+      formNote.classList.add('is-success');
+      contactForm.reset();
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
+  } catch (err) {
+    formNote.textContent = 'Could not send automatically — opening your email client instead.';
+    formNote.classList.add('is-error');
+    mailtoFallback();
+  } finally {
+    formSubmitBtn.disabled = false;
+  }
 });
 
 // ===== Hero headline word-split reveal =====

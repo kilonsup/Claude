@@ -24,6 +24,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- Cloudflare Web Analytics — replace data-cf-beacon token before deploying -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_WEB_ANALYTICS_TOKEN"}'></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -665,6 +667,10 @@
 
     <form class="contact__form reveal" id="contactForm" novalidate>
       <h3>Start the Conversation</h3>
+      <!-- Web3Forms — replace with your real access key from web3forms.com before deploying -->
+      <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New inquiry from geraldukor.com">
+      <input type="checkbox" name="botcheck" class="contact__honeypot" tabindex="-1" autocomplete="off">
       <div class="form-row">
         <label>
           <span>Name</span>
@@ -672,12 +678,12 @@
         </label>
         <label>
           <span>Phone or Email</span>
-          <input type="text" name="phone" placeholder="Best way to reach you" required>
+          <input type="text" name="phone_or_email" placeholder="Best way to reach you" required>
         </label>
       </div>
       <label>
         <span>Inquiry Type</span>
-        <select name="inquiryType" required>
+        <select name="inquiry_type" required>
           <option value="" disabled selected>Select one</option>
           <option>Executive / Board Opportunity</option>
           <option>Facilities Consulting Engagement</option>
