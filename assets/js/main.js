@@ -3,6 +3,23 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 // ===== Footer year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ===== Day / night theme toggle =====
+const themeToggle = document.getElementById('themeToggle');
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+}
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
 // ===== Mobile nav toggle =====
 const navToggle = document.getElementById('navToggle');
 const navbar = document.getElementById('navbar');

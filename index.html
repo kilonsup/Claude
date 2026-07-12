@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 <title>Gerald Ukor | Facilities &amp; Sustainability Executive, Nigeria</title>
 <meta name="description" content="Gerald Chijioke Ukor — mMBA, RFM (IFMA). 14+ years leading facilities management in Nigeria across healthcare, financial infrastructure, real estate, and energy. Open to executive mandates and consulting engagements.">
 <link rel="canonical" href="https://geraldukor.com/">
@@ -92,6 +99,10 @@
       </nav>
 
       <div class="navbar__cta">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="icon icon--sun" viewBox="0 0 24 24"><path d="M12 4a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zm0 19a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zm9-11a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zM4 12a1 1 0 0 1-1 1H1a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zm14.36 6.36a1 1 0 0 1-1.41 0l-1.42-1.41a1 1 0 0 1 1.42-1.42l1.41 1.42a1 1 0 0 1 0 1.41zM7.05 6.34a1 1 0 0 1-1.41 0L4.22 4.93A1 1 0 0 1 5.64 3.5l1.41 1.42a1 1 0 0 1 0 1.42zm11.31-1.42a1 1 0 0 1 0 1.42l-1.41 1.41a1 1 0 1 1-1.42-1.41l1.42-1.42a1 1 0 0 1 1.41 0zM6.34 16.95a1 1 0 0 1 0 1.41l-1.41 1.42A1 1 0 1 1 3.5 18.36l1.42-1.41a1 1 0 0 1 1.42 0zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .49-2.85 1 1 0 0 0-1.32-1.26A10.14 10.14 0 1 0 22 14.05a1 1 0 0 0-.36-1.05z"/></svg>
+        </button>
         <a href="https://wa.me/2347031813005" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">WhatsApp</a>
         <a href="#contact" class="btn btn--primary btn--sm">Start a Conversation</a>
       </div>
