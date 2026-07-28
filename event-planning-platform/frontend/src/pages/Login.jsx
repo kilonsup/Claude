@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Wordmark from "../components/Wordmark";
 
 export default function Login() {
   const { login, register, loading, error } = useAuth();
@@ -33,8 +34,7 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-hero">
-          <img src="/logo.svg" alt="Black Sand Events logo" className="auth-logo" />
-          <h1>Black Sand Events</h1>
+          <Wordmark stacked light />
           <p>Plan events end-to-end: discover, book vendors, surprise someone, manage guests, and share the memories after.</p>
           <ul className="auth-points">
             <li>🎉 Discover public events near you</li>

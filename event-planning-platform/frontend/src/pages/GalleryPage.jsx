@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/client";
+import Wordmark from "../components/Wordmark";
 
 const CATEGORY_ORDER = [
   "WEDDING", "ENGAGEMENT", "SURPRISE", "BIRTHDAY", "BABY_SHOWER", "CORPORATE", "OTHER",
@@ -34,7 +35,7 @@ export default function GalleryPage() {
   return (
     <div>
       <section className="hero hero-dark">
-        <img src="/logo.svg" alt="Black Sand Events logo" className="hero-logo" />
+        <Wordmark stacked light />
         <h1>Our Work</h1>
         <p>A look at projects Black Sand Events &amp; Creations has brought to life.</p>
       </section>

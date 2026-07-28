@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Wordmark from "./Wordmark";
 
 export const WHATSAPP_NUMBERS = [
   { label: "+234 817 161 7653", link: "https://wa.me/2348171617653" },
@@ -23,8 +24,7 @@ export default function Layout() {
     <div className="shell">
       <header className="topbar">
         <NavLink to={user ? "/" : "/discover"} className="brand">
-          <img src="/logo.svg" alt="Black Sand Events logo" className="brand-logo" />
-          <span>Black Sand <em>Events</em></span>
+          <Wordmark />
         </NavLink>
         <nav className="topnav">
           <NavLink to="/discover">Discover</NavLink>
@@ -70,8 +70,8 @@ export default function Layout() {
       </a>
 
       <footer className="footer">
-        <img src="/logo.svg" alt="" className="footer-logo" />
-        <p><strong>Black Sand Events &amp; Creations</strong> — discover events, book vendors, plan surprises, and share the memories.</p>
+        <Wordmark stacked />
+        <p>Discover events, book vendors, plan surprises, and share the memories.</p>
         <p className="footer-contacts">
           WhatsApp:{" "}
           {WHATSAPP_NUMBERS.map((n, i) => (

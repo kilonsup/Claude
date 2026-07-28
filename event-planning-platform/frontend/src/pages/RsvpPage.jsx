@@ -131,7 +131,7 @@ export default function RsvpPage() {
 
         {notice && <p className="callout">{notice}</p>}
         <p className="rsvp-footer">
-          <img src="/logo.svg" alt="" className="rsvp-logo" /> Powered by Black Sand Events &amp; Creations
+          Powered by <span className="wordmark">Black Sand <em>Events</em></span>
           <br />
           WhatsApp: <a href="https://wa.me/2348171617653">+234 817 161 7653</a> · <a href="https://wa.me/2347079962577">+234 707 996 2577</a>
         </p>

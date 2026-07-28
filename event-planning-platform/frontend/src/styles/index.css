@@ -101,8 +101,8 @@ h3 { margin: 0.8rem 0 0.4rem; }
   padding: 2.4rem; color: var(--cream);
   background: linear-gradient(150deg, #000, #241e18 60%, #3b2f23);
 }
-.auth-hero h1 { font-size: 2rem; margin-bottom: 0.6rem; }
-.auth-logo { width: 84px; height: 84px; margin-bottom: 0.8rem; border-radius: 50%; }
+.auth-hero .wordmark-stacked { margin-bottom: 1.1rem; justify-items: start; }
+.auth-hero .wordmark-stacked .wordmark-rule { justify-self: stretch; width: auto; }
 .auth-points { list-style: none; margin-top: 1.2rem; display: grid; gap: 0.55rem; }
 .auth-form { padding: 2.2rem; display: grid; gap: 0.85rem; align-content: start; }
 .auth-form label { display: grid; gap: 0.25rem; font-weight: 600; font-size: 0.9rem; }
@@ -127,7 +127,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   background: linear-gradient(140deg, #000, #241e18 55%, #4a3a26);
 }
 .hero-dark { display: grid; justify-items: center; text-align: center; gap: 0.2rem; }
-.hero-logo { width: 110px; height: 110px; border-radius: 50%; margin-bottom: 0.6rem; }
+.hero-dark .wordmark-stacked { margin-bottom: 0.9rem; }
 .hero-alt { background: linear-gradient(140deg, #92400e, var(--accent) 70%, #fcd34d); }
 .hero h1 { font-size: 2rem; }
 .hero p { opacity: 0.9; margin: 0.3rem 0 1rem; }
@@ -300,12 +300,34 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .registry-list li.claimed { opacity: 0.55; }
 .rsvp-footer { text-align: center; color: var(--ink-soft); font-size: 0.8rem; margin-top: 0.8rem; }
 
-/* ---------- Black Sand branding ---------- */
-.brand { display: flex; align-items: center; gap: 0.55rem; }
-.brand span em { font-style: normal; color: var(--sand-deep); }
-.brand-logo { width: 40px; height: 40px; border-radius: 50%; }
-.footer { display: grid; gap: 0.3rem; justify-items: center; }
-.footer-logo { width: 56px; height: 56px; border-radius: 50%; margin-bottom: 0.2rem; }
+/* ---------- Black Sand branding: typographic wordmark ---------- */
+.wordmark {
+  font-family: "Cormorant Garamond", Didot, "Bodoni MT", Georgia, "Times New Roman", serif;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--ink); white-space: nowrap;
+}
+.wordmark em { font-style: normal; color: var(--sand-deep); }
+.wordmark-light, .wordmark-light em { color: var(--cream); }
+.wordmark-light .wordmark-sub { color: var(--sand); }
+.brand .wordmark { font-size: 1.35rem; }
+.wordmark-stacked {
+  display: grid; justify-items: center; gap: 0.35rem; white-space: normal;
+}
+.wordmark-stacked .wordmark-main { font-size: 2rem; line-height: 1; letter-spacing: 0.2em; margin-right: -0.2em; }
+.wordmark-stacked .wordmark-rule {
+  display: flex; align-items: center; gap: 0.45rem; width: 150px;
+  font-size: 0.42rem; letter-spacing: 0; opacity: 0.65; line-height: 1;
+}
+.wordmark-stacked .wordmark-rule::before,
+.wordmark-stacked .wordmark-rule::after {
+  content: ""; flex: 1; height: 1px; background: currentColor;
+}
+.wordmark-stacked .wordmark-sub {
+  font-size: 0.85rem; letter-spacing: 0.62em; margin-right: -0.62em; color: var(--sand-deep);
+}
+.footer { display: grid; gap: 0.35rem; justify-items: center; }
+.footer .wordmark-stacked { margin-bottom: 0.3rem; }
+.footer .wordmark-stacked .wordmark-main { font-size: 1.5rem; }
 .footer-contacts a { font-weight: 700; }
 .dev-credit { font-size: 0.78rem; color: var(--ink-soft); text-align: center; }
 
@@ -325,7 +347,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 }
 .gallery-grid .memory-card img { height: 200px; }
 .gallery-grid .memory-card.featured { outline: 3px solid var(--sand); outline-offset: -3px; }
-.rsvp-logo { width: 30px; height: 30px; border-radius: 50%; vertical-align: middle; margin-right: 0.35rem; }
+.rsvp-footer .wordmark { font-size: 1.05rem; }
 
 @media (max-width: 760px) {
   .auth-card { grid-template-columns: 1fr; }
