@@ -92,7 +92,7 @@ export default function EventsPage() {
       {events.length === 0 && !showForm ? (
         <div className="empty-state">
           <h2>Nothing planned yet</h2>
-          <p className="muted">Create your first event and Festiva will set up a starter checklist for you.</p>
+          <p className="muted">Create your first event and Black Sand Events will set up a starter checklist for you.</p>
         </div>
       ) : (
         <div className="card-grid">

@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import DiscoverPage from "./pages/DiscoverPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import EventsPage from "./pages/EventsPage";
+import GalleryPage from "./pages/GalleryPage";
 import Login from "./pages/Login";
 import MessagesPage from "./pages/MessagesPage";
 import RsvpPage from "./pages/RsvpPage";
@@ -20,6 +21,7 @@ export default function App() {
 
       <Route element={<Layout />}>
         <Route path="/discover" element={<DiscoverPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/vendors" element={<VendorsPage />} />
         <Route path="/vendors/:id" element={<VendorDetailPage />} />
 

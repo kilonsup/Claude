@@ -86,7 +86,7 @@ export default function MessagesPage() {
         ) : (
           <div className="empty-state">
             <h2>Pick a conversation</h2>
-            <p className="muted">Coordinate details with {user.role === "VENDOR" ? "planners" : "your vendors"} without leaving Festiva.</p>
+            <p className="muted">Coordinate details with {user.role === "VENDOR" ? "planners" : "your vendors"} without leaving Black Sand Events.</p>
           </div>
         )}
       </section>

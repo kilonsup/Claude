@@ -33,7 +33,8 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-hero">
-          <h1><span className="brand-mark">✦</span> Festiva</h1>
+          <img src="/logo.svg" alt="Black Sand Events logo" className="auth-logo" />
+          <h1>Black Sand Events</h1>
           <p>Plan events end-to-end: discover, book vendors, surprise someone, manage guests, and share the memories after.</p>
           <ul className="auth-points">
             <li>🎉 Discover public events near you</li>
@@ -73,8 +74,9 @@ export default function Login() {
             {loading ? "Please wait…" : mode === "login" ? "Sign in" : "Create account"}
           </button>
           <p className="auth-alt">
-            Just browsing? <Link to="/discover">Explore public events</Link>
+            Just browsing? <Link to="/discover">Explore public events</Link> or <Link to="/gallery">see our work</Link>
           </p>
+          <p className="dev-credit">developed by Ajommuo - 08087777476</p>
         </form>
       </div>
     </div>

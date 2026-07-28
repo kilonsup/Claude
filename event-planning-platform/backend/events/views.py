@@ -1,8 +1,29 @@
 from django.utils import timezone
 from rest_framework import permissions, viewsets
 
-from .models import Event
-from .serializers import EventSerializer, PublicEventSerializer
+from accounts.permissions import IsAdmin
+
+from .models import Event, GalleryItem
+from .serializers import EventSerializer, GalleryItemSerializer, PublicEventSerializer
+
+
+class GalleryViewSet(viewsets.ModelViewSet):
+    """Black Sand Events' public project showcase: anyone can browse, admins curate."""
+
+    serializer_class = GalleryItemSerializer
+    pagination_class = None
+
+    def get_permissions(self):
+        if self.action in ("list", "retrieve"):
+            return [permissions.AllowAny()]
+        return [IsAdmin()]
+
+    def get_queryset(self):
+        qs = GalleryItem.objects.all()
+        category = self.request.query_params.get("category")
+        if category:
+            qs = qs.filter(category=category.upper())
+        return qs
 
 
 class EventViewSet(viewsets.ModelViewSet):

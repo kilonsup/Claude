@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone
 
-from events.models import Event
+from events.models import Event, GalleryItem
 from gifts.models import Gift, RegistryItem
 from guests.models import Guest
 from memories.models import MemoryPost
@@ -226,6 +226,30 @@ class Command(BaseCommand):
                 event=past_event, author=planner,
                 image_url="https://picsum.photos/seed/memory2/800/600",
                 caption="The cake moment.",
+            )
+
+        # Public "Our Work" gallery — placeholder shots until real project
+        # photos are uploaded via the Django admin or the gallery API.
+        gallery_specs = [
+            ("WEDDING", "Garden wedding at The Monarch, Lekki", True),
+            ("WEDDING", "Traditional engagement decor in burgundy & gold", False),
+            ("ENGAGEMENT", "Rooftop proposal setup with 500 roses", True),
+            ("ENGAGEMENT", "She said yes — beachside picnic proposal", False),
+            ("SURPRISE", "Surprise 60th birthday reveal moment", True),
+            ("SURPRISE", "Flash-mob anniversary surprise, Victoria Island", False),
+            ("BIRTHDAY", "Gold-themed 40th birthday dinner", True),
+            ("BIRTHDAY", "Kids' superhero party with balloon arch", False),
+            ("BABY_SHOWER", "Teddy-bear themed baby shower", False),
+            ("CORPORATE", "End-of-year gala for 300 guests", False),
+            ("OTHER", "Custom balloon & backdrop installation", False),
+        ]
+        for i, (cat, caption, featured) in enumerate(gallery_specs):
+            GalleryItem.objects.get_or_create(
+                category=cat, caption=caption,
+                defaults=dict(
+                    image_url=f"https://picsum.photos/seed/blacksand{i}/900/700",
+                    is_featured=featured, order=i,
+                ),
             )
 
         self.stdout.write(self.style.SUCCESS(

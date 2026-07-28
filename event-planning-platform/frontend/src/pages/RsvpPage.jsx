@@ -130,7 +130,12 @@ export default function RsvpPage() {
         </form>
 
         {notice && <p className="callout">{notice}</p>}
-        <p className="rsvp-footer">Powered by ✦ Festiva</p>
+        <p className="rsvp-footer">
+          <img src="/logo.svg" alt="" className="rsvp-logo" /> Powered by Black Sand Events &amp; Creations
+          <br />
+          WhatsApp: <a href="https://wa.me/2348171617653">+234 817 161 7653</a> · <a href="https://wa.me/2347079962577">+234 707 996 2577</a>
+        </p>
+        <p className="dev-credit">developed by Ajommuo - 08087777476</p>
       </div>
     </div>
   );

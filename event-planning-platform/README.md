@@ -1,11 +1,15 @@
-# Festiva — Event Planning Platform
+# Black Sand Events — Event Planning Platform
 
-An end-to-end event planning platform. More than a booking site: it covers the full
-lifecycle of an event, from discovery to the memories shared after it's over.
+The platform of **Black Sand Events & Creations**. More than a booking site: it covers
+the full lifecycle of an event, from discovery to the memories shared after it's over.
+
+- WhatsApp: [+234 817 161 7653](https://wa.me/2348171617653) · [+234 707 996 2577](https://wa.me/2347079962577)
+- developed by Ajommuo - 08087777476
 
 | Capability | Where it lives |
 |---|---|
 | **Discover events** | Public `Discover` page — browse upcoming public events by category/city, no account needed |
+| **Showcase gallery** | Public `Our Work` page — executed projects grouped under Weddings, Engagements, Surprises, Birthdays, Baby Showers, Corporate; curated by admins |
 | **Book vendors** | Vendor marketplace with profiles, portfolios, ratings & reviews, and a request → confirm/decline → complete booking workflow |
 | **Plan surprise experiences** | Surprise mode on any event: a secret brief visible only to "insider" guests — never to the honoree |
 | **Send gifts** | Per-event gift registry with claiming, plus cash gifts with messages, all through the guest's invite link |
@@ -73,6 +77,7 @@ POST /api/accounts/register/           Self-serve signup (planner or vendor)
 GET  /api/accounts/me/                 Current profile
 
 GET  /api/events/discover/             Public event discovery (no auth)
+GET  /api/events/gallery/              Public project showcase (admin-curated; ?category=WEDDING …)
 CRUD /api/events/                      My events (surprise fields, budget, visibility)
 CRUD /api/guests/?event=N              Guest list management
 GET/POST /api/rsvp/<token>/            Public invite: view + RSVP (no auth)

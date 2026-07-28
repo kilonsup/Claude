@@ -27,7 +27,7 @@ export default function DiscoverPage() {
     <div>
       <section className="hero">
         <h1>Find something worth celebrating</h1>
-        <p>Public events happening on Festiva — concerts, weddings, galas and more.</p>
+        <p>Public events happening on Black Sand Events — concerts, weddings, galas and more.</p>
         <input
           className="hero-search"
           placeholder="Search by title, city or venue…"
@@ -61,7 +61,7 @@ export default function DiscoverPage() {
               </div>
               <div className="event-card-body">
                 <h3>{ev.title}</h3>
-                <p className="muted">{ev.description || "An event on Festiva."}</p>
+                <p className="muted">{ev.description || "An event by Black Sand Events."}</p>
                 <div className="event-meta">
                   <span>📅 {new Date(ev.event_date).toLocaleDateString(undefined, { dateStyle: "medium" })}</span>
                   <span>📍 {[ev.venue_name, ev.city].filter(Boolean).join(", ") || "TBA"}</span>

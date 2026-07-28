@@ -1,6 +1,13 @@
 from django.contrib import admin
 
-from .models import Event
+from .models import Event, GalleryItem
+
+
+@admin.register(GalleryItem)
+class GalleryItemAdmin(admin.ModelAdmin):
+    list_display = ["caption", "category", "is_featured", "order"]
+    list_filter = ["category", "is_featured"]
+    search_fields = ["caption"]
 
 
 @admin.register(Event)

@@ -1,6 +1,15 @@
 from rest_framework import serializers
 
-from .models import Event
+from .models import Event, GalleryItem
+
+
+class GalleryItemSerializer(serializers.ModelSerializer):
+    category_label = serializers.CharField(source="get_category_display", read_only=True)
+
+    class Meta:
+        model = GalleryItem
+        fields = ["id", "category", "category_label", "image_url", "caption", "is_featured", "order", "created_at"]
+        read_only_fields = ["id", "created_at"]
 
 
 class EventSerializer(serializers.ModelSerializer):

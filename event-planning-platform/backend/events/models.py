@@ -53,3 +53,29 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class GalleryItem(models.Model):
+    """A showcase photo from an executed project, displayed on the public gallery."""
+
+    class Category(models.TextChoices):
+        WEDDING = "WEDDING", "Weddings"
+        ENGAGEMENT = "ENGAGEMENT", "Engagements"
+        SURPRISE = "SURPRISE", "Surprises"
+        BIRTHDAY = "BIRTHDAY", "Birthdays"
+        BABY_SHOWER = "BABY_SHOWER", "Baby Showers"
+        CORPORATE = "CORPORATE", "Corporate"
+        OTHER = "OTHER", "Other Creations"
+
+    category = models.CharField(max_length=20, choices=Category.choices, default=Category.OTHER)
+    image_url = models.URLField()
+    caption = models.CharField(max_length=200, blank=True)
+    is_featured = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["category", "order", "-created_at"]
+
+    def __str__(self):
+        return f"{self.get_category_display()}: {self.caption or self.image_url}"
