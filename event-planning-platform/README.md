@@ -68,6 +68,30 @@ npm run dev                       # http://localhost:5173 (proxies /api to :8000
 Copy `backend/.env.example` to `backend/.env`, set `DB_ENGINE=mysql` and the
 `DB_*` variables, then run migrations.
 
+## Deploying
+
+### Frontend on Vercel
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import this GitHub repository.
+2. Set **Root Directory** to `event-planning-platform/frontend` (Framework Preset: Vite —
+   `vercel.json` is already configured with SPA rewrites).
+3. Add an environment variable `VITE_API_BASE_URL` pointing at your hosted backend API,
+   e.g. `https://your-backend.onrender.com/api`.
+4. Deploy — Vercel gives you a shareable `*.vercel.app` URL (and you can attach a custom
+   domain later).
+
+Note: Vercel builds from the repository's production branch (usually `main`). If this
+project lives on a feature branch, either merge it to `main` first or set the project's
+Production Branch to that feature branch in Vercel → Settings → Git.
+
+### Backend
+
+Vercel doesn't host Django well; use [Render](https://render.com),
+[Railway](https://railway.app) or [PythonAnywhere](https://www.pythonanywhere.com):
+gunicorn + `epp.wsgi` (see `backend/.env.example` for the required variables), run
+`python manage.py migrate && python manage.py seed_demo_data`, then set
+`CORS_ALLOWED_ORIGINS` to include your Vercel URL.
+
 ## API map
 
 ```
