@@ -1,24 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Black Sand Events and Creations logo">
   <defs>
-    <path id="arcText" d="M 200 355 A 155 155 0 1 1 200.01 355" fill="none"/>
+    <path id="arcText" d="M 200 358 A 158 158 0 1 1 200.01 358" fill="none"/>
   </defs>
   <circle cx="200" cy="200" r="200" fill="#0b0b0b"/>
-  <circle cx="200" cy="200" r="178" fill="none" stroke="#f2e7df" stroke-width="3"/>
-  <text font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" letter-spacing="6" fill="#f2e7df">
-    <textPath href="#arcText" startOffset="8%">BLACK SAND EVENTS &amp; CREATIONS</textPath>
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#f2e7df" stroke-width="2.5"/>
+  <text font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#f2e7df">
+    <textPath href="#arcText" startOffset="10%">BLACK SAND EVENTS &amp; CREATIONS</textPath>
   </text>
-  <!-- BS monogram -->
-  <text x="118" y="258" font-family="'Brush Script MT', 'Segoe Script', cursive" font-style="italic" font-size="150" font-weight="700" fill="#f2e7df">B</text>
-  <text x="185" y="292" font-family="'Brush Script MT', 'Segoe Script', cursive" font-style="italic" font-size="150" font-weight="700" fill="#f2e7df">S</text>
-  <!-- burst rays -->
-  <g stroke="#f2e7df" stroke-width="7" stroke-linecap="round">
-    <line x1="252" y1="150" x2="256" y2="118"/>
-    <line x1="272" y1="160" x2="290" y2="132"/>
-    <line x1="286" y1="178" x2="312" y2="162"/>
-    <line x1="292" y1="200" x2="322" y2="196"/>
-    <line x1="288" y1="222" x2="316" y2="230"/>
+
+  <!-- BS monogram: monoline script -->
+  <g fill="none" stroke="#f2e7df" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+    <!-- B: stem with bottom-left loop -->
+    <path d="M 172 148
+             C 156 154 147 174 143 198
+             C 138 226 132 256 124 282
+             C 118 304 96 308 97 292
+             C 98 277 121 271 144 266
+             C 158 262 170 256 177 247"/>
+    <!-- B: double bump ("3" against the stem) -->
+    <path d="M 156 180
+             C 188 166 212 184 198 208
+             C 191 219 177 224 166 224
+             C 184 227 204 240 201 262
+             C 198 286 168 295 150 283"/>
+    <!-- S (bottom ends in a spiral curl) -->
+    <path d="M 282 212
+             C 290 190 274 174 251 179
+             C 228 184 219 208 233 225
+             C 249 244 272 256 280 278
+             C 289 304 273 326 248 324
+             C 226 322 217 304 228 293
+             C 238 283 256 288 256 302
+             C 256 311 248 315 242 311"/>
   </g>
+
+  <!-- upper burst fan (between B and balloon) -->
+  <g fill="#f2e7df">
+    <polygon points="225,150 216,120 234,146"/>
+    <polygon points="241,142 240,100 251,140"/>
+    <polygon points="258,140 266,106 267,142"/>
+    <polygon points="272,148 288,118 281,152"/>
+    <polygon points="283,160 305,140 291,168"/>
+  </g>
+  <!-- right burst fan (right of the S) -->
+  <g fill="#f2e7df">
+    <polygon points="296,186 330,168 302,196"/>
+    <polygon points="300,204 338,200 301,213"/>
+    <polygon points="299,222 332,232 296,230"/>
+    <polygon points="294,238 320,254 290,245"/>
+  </g>
+
   <!-- balloon -->
-  <ellipse cx="322" cy="128" rx="24" ry="28" fill="#f2e7df"/>
-  <path d="M 318 156 q -6 14 4 24 q 10 10 2 24" fill="none" stroke="#f2e7df" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="320" cy="126" r="19" fill="#f2e7df"/>
+  <polygon points="314,144 325,146 318,153" fill="#f2e7df"/>
+  <!-- balloon string + confetti squiggles -->
+  <g fill="none" stroke="#f2e7df" stroke-width="3.5" stroke-linecap="round">
+    <path d="M 316 152 q -9 10 -3 20 q 6 10 -5 18"/>
+    <path d="M 288 102 q 8 -6 4 -14 q -4 -8 4 -13"/>
+    <path d="M 342 152 q 10 3 13 12"/>
+  </g>
 </svg>
