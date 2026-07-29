@@ -70,37 +70,45 @@ Copy `backend/.env.example` to `backend/.env`, set `DB_ENGINE=mysql` and the
 
 ## Deploying
 
-The repository supports two deployment shapes. Both build from the production branch
-(usually `main`) — set it under Vercel → Settings → Git if you deploy a feature branch.
+The frontend and the API deploy as two separate services. Both build from the production
+branch (usually `main`) — set it under Vercel → Settings → Git if you deploy a feature
+branch.
 
-### Option A — frontend and API on one Vercel domain (recommended)
+A Postgres database is required in production: serverless and container hosts have
+read-only or ephemeral filesystems, so SQLite cannot be used there. [Neon](https://neon.tech)
+and Render's own Postgres both have free tiers.
 
-`event-planning-platform/vercel.json` declares two Vercel Services: the Vite frontend at
-`/` and Django at `/api`. Same-origin, so there is no CORS setup and no `VITE_API_BASE_URL`
-to configure.
+### 1. Frontend on Vercel
 
-1. Create a Postgres database and copy its connection string — [Vercel
-   Postgres](https://vercel.com/storage/postgres) or [Neon](https://neon.tech) (free tiers
-   are fine). Serverless has a read-only filesystem, so SQLite cannot be used here.
-2. In the Vercel project set **Root Directory** to `event-planning-platform`.
-3. Add environment variables:
-   | Variable | Value |
-   |---|---|
-   | `DATABASE_URL` | the Postgres connection string |
-   | `SECRET_KEY` | any long random string |
-   | `DEBUG` | `False` |
-   | `SEED_DEMO_DATA` | `1` for the first deploy only, then remove |
-4. Deploy. `backend/build.sh` runs `collectstatic` and `migrate` during the build.
+1. Import the repository at [vercel.com/new](https://vercel.com/new).
+2. Set **Root Directory** to `event-planning-platform/frontend`. Framework Preset is Vite;
+   `frontend/vercel.json` handles the SPA rewrites.
+3. Deploy. Add `VITE_API_BASE_URL` once the API is up (step 3 below).
 
-### Option B — frontend on Vercel, backend elsewhere
+### 2. API on Render
 
-1. Set **Root Directory** to `event-planning-platform/frontend` (Framework Preset: Vite;
-   `frontend/vercel.json` handles SPA rewrites).
-2. Host the API on [Render](https://render.com) or [Railway](https://railway.app):
-   root directory `event-planning-platform/backend`, build command `./build.sh`, start
-   command `gunicorn epp.wsgi`, plus a `DATABASE_URL`.
-3. In Vercel, set `VITE_API_BASE_URL` to `https://your-backend.onrender.com/api`.
-4. On the backend, set `CORS_ALLOWED_ORIGINS` to your Vercel URL.
+`render.yaml` in this directory is a Render Blueprint — **New → Blueprint** in the Render
+dashboard picks it up and configures the service automatically. It sets the build to
+`./build.sh` (collectstatic + migrate) and serves with gunicorn. Paste the Postgres
+connection string when prompted for `DATABASE_URL`.
+
+To configure it by hand instead: root directory `event-planning-platform/backend`, build
+command `./build.sh`, start command `gunicorn epp.wsgi:application`.
+
+Render's free tier sleeps after 15 minutes idle; the first request afterwards takes
+roughly 30 seconds while the service wakes.
+
+### 3. Connect them
+
+1. In Vercel, set `VITE_API_BASE_URL` to `https://your-api.onrender.com/api` and redeploy.
+2. On the API, set `CORS_ALLOWED_ORIGINS` to your Vercel URL.
+
+### Demo data and the admin account
+
+`SEED_DEMO_DATA=1` populates example planners, vendors, events and gallery items during a
+deploy. It creates accounts with the well-known password `Passw0rd!`, including an `admin`
+superuser — remove the variable after the first deploy and change that password before
+sharing a public link.
 
 ### Database configuration
 
