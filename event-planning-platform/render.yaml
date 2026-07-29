@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: blacksand-api
+    runtime: python
+    plan: free
+    rootDir: event-planning-platform/backend
+    buildCommand: ./build.sh
+    startCommand: gunicorn epp.wsgi:application
+    envVars:
+      # Paste the Neon connection string when prompted at deploy time.
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      # The Vercel site's origin, so browser requests are allowed through.
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://blacksandevents.vercel.app
+      - key: SEED_DEMO_DATA
+        value: "1"
+      - key: PYTHON_VERSION
+        value: 3.12.4
