@@ -233,7 +233,7 @@ function monthName(ym){return d(ym+'-01').toLocaleDateString('en-GB',{month:'lon
 function reportText(ym){
   var b=S.meta.baseline, r=rows(), inM=r.filter(function(m){return m.date.slice(0,7)===ym&&m.followers!=null;});
   var before=r.filter(function(m){return m.date.slice(0,7)<ym&&m.followers!=null;}), start=before.length?before[before.length-1]:inM[0], end=inM[inM.length-1];
-  var L=['IFMA Healthcare Council: social media report, '+monthName(ym),''];
+  var L=[S.meta.page+': social media report, '+monthName(ym),''];
   if(end){var g=end.followers-start.followers;L.push('FOLLOWERS','  '+start.followers+' ('+fmt(start.date)+') to '+end.followers+' ('+fmt(end.date)+'): '+(g>=0?'+':'')+g+(start.followers?' ('+(g/start.followers*100).toFixed(1)+'%)':''),'  Since baseline of '+b.followers+' on '+fmt(b.date)+': '+((end.followers-b.followers)>=0?'+':'')+(end.followers-b.followers));
     S.meta.targets.forEach(function(t){L.push('  Target '+t.followers+' by '+(t.date?fmt(t.date):t.label)+': '+Math.max(0,t.followers-end.followers)+' to go');});}
   else L.push('FOLLOWERS','  No follower figures logged for this month.');
