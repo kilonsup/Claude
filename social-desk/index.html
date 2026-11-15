@@ -86,6 +86,8 @@ textarea{width:100%}
 details{margin-top:6px} summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:600}
 pre{white-space:pre-wrap;font-family:var(--body);font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;margin:6px 0 0;max-width:65ch}
 .flagtxt{color:var(--warn)}
+.brand{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand img{height:46px;max-width:100%;background:#fff;border-radius:6px;padding:4px 8px}
 td a{color:var(--accent)}
 </style></head><body><div id="root"></div><script type="application/json" id="state">null</script><script id="app">
 (function(){
@@ -259,7 +261,10 @@ function loadPanel(){
   return '<section class="panel"><h2>Load data</h2><p class="note">Loading replaces everything currently shown with the contents of the backup.</p><form class="add" data-form="load"><label for="ld-f">Backup file<input id="ld-f" name="file" type="file" accept=".json,application/json"></label><label for="ld-p" class="full">Or paste the data text<textarea id="ld-p" name="paste" rows="4"></textarea></label><button>Load data</button> <span id="ld-ok" class="note" role="status"></span></form></section>';
 }
 function vBackup(){
-  return '<section class="panel"><div class="head"><h2>Back up your data</h2></div><p class="note">'+(STANDALONE?'Everything you enter is stored in this browser on this device only, and nowhere else. Download a backup after each session and keep it somewhere safe. To continue on another device or browser, load the backup file there.':'Copy all data from here to move it into the standalone version of this tool, or to keep a backup outside Claude.')+'</p><div>'+(STANDALONE?'<button data-download>Download backup file</button> ':'')+'<button class="ghost" data-copyall>Copy all data</button> <span id="bk-ok" class="note" role="status"></span></div><textarea id="bk-t" class="report" readonly aria-label="All data as text">'+esc(JSON.stringify(S,null,1))+'</textarea></section>'+loadPanel();
+  return '<section class="panel"><div class="head"><h2>Back up your data</h2></div><p class="note">'+(STANDALONE?'Everything you enter is stored in this browser on this device only, and nowhere else. Download a backup after each session and keep it somewhere safe. To continue on another device or browser, load the backup file there.':'Copy all data from here to move it into the standalone version of this tool, or to keep a backup outside Claude.')+'</p><div>'+(STANDALONE?'<button data-download>Download backup file</button> ':'')+'<button class="ghost" data-copyall>Copy all data</button> <span id="bk-ok" class="note" role="status"></span></div><textarea id="bk-t" class="report" readonly aria-label="All data as text">'+esc(JSON.stringify(S,null,1))+'</textarea></section>'+loadPanel()+logoPanel();
+}
+function logoPanel(){
+  return '<section class="panel"><h2>Page logo</h2><p class="note">Shown beside the title. Use a small image, under 300 KB.</p><form class="add" data-form="logo"><label for="lg-f">Image file<input id="lg-f" name="file" type="file" accept="image/*" required></label><button class="ghost">Set logo</button>'+(S.meta.logo?' <button type="button" class="ghost" data-nologo>Remove logo</button>':'')+' <span id="lg-ok" class="note" role="status"></span></form></section>';
 }
 function setup(){
   return '<div class="wrap"><header class="top"><h1>Social Desk<small>A tracker for one LinkedIn page: followers, engagement, content plan, calendar and board report</small></h1></header><main class="stack"><p class="flag">No data on this device yet. Load your backup file to continue where you left off. Your data stays in this browser and is not uploaded anywhere.</p>'+loadPanel()+'<section class="panel"><h2>Or start a blank desk</h2><form class="add" data-form="blank"><label for="bl-p" class="grow">Page name<input id="bl-p" name="page" required></label><label for="bl-f">Followers today<input id="bl-f" name="followers" type="number" min="1" required></label><label for="bl-d">Date<input id="bl-d" name="date" type="date" required value="'+today()+'"></label><button class="ghost">Start</button></form></section></main></div>';
@@ -275,7 +280,7 @@ function render(){
   refs();
   var v=view(), sl=saveLabel();
   var body={overview:vOverview,metrics:vMetrics,pipeline:vPipeline,calendar:vCalendar,outreach:vOutreach,watchlist:vWatch,report:vReport,backup:vBackup}[v]();
-  root.innerHTML='<div class="wrap"><header class="top"><h1>Social Desk<small>'+esc(S.meta.page)+' · LinkedIn page'+(S.meta.line?' · '+esc(S.meta.line):'')+'</small></h1><div class="save '+sl[0]+'" role="status"><i></i>'+sl[1]+'</div></header><nav aria-label="Sections">'+VIEWS.map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===v?' aria-current="page"':'')+'>'+x[1]+'</a>';}).join('')+'</nav><main class="stack">'+body+'</main></div>';
+  root.innerHTML='<div class="wrap"><header class="top"><div class="brand">'+(S.meta.logo?'<img src="'+esc(S.meta.logo)+'" alt="Logo" onerror="this.remove()">':'')+'<h1>Social Desk<small>'+esc(S.meta.page)+' · LinkedIn page'+(S.meta.line?' · '+esc(S.meta.line):'')+'</small></h1></div><div class="save '+sl[0]+'" role="status"><i></i>'+sl[1]+'</div></header><nav aria-label="Sections">'+VIEWS.map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===v?' aria-current="page"':'')+'>'+x[1]+'</a>';}).join('')+'</nav><main class="stack">'+body+'</main></div>';
 }
 
 function buildDoc(){
@@ -294,6 +299,7 @@ function field(f,k){var el=f.elements[k];return el?el.value.trim():'';}
 
 root.addEventListener('submit',function(e){
   var f=e.target, k=f.getAttribute('data-form'); if(!k)return; e.preventDefault();
+  if(k==='logo'){var lf=f.elements.file.files&&f.elements.file.files[0];if(!lf)return;if(lf.size>300000){document.getElementById('lg-ok').textContent='That image is over 300 KB. Choose a smaller one.';return;}var lr=new FileReader();lr.onload=function(){S.meta.logo=String(lr.result);commit();};lr.readAsDataURL(lf);return;}
   if(k==='load'){var fl=f.elements.file.files&&f.elements.file.files[0];if(fl){var rd=new FileReader();rd.onload=function(){applyLoad(String(rd.result));};rd.readAsText(fl);}else applyLoad(field(f,'paste'));return;}
   if(k==='blank'){var bd=field(f,'date'),bf=num(field(f,'followers'));S=normalise({rev:0,meta:{page:field(f,'page'),baseline:{date:bd,followers:bf}},metrics:[{id:'m0',date:bd,followers:bf,impressions:null,reactions:null,comments:null,reposts:null,clicks:null,outside:null,enquiries:null,top:'',note:'Baseline'}]});commit();return;}
   if(k==='target'){S.meta.targets.push({id:uid('t'),followers:num(field(f,'followers')),date:field(f,'date'),label:field(f,'label')});}
@@ -315,6 +321,7 @@ root.addEventListener('click',function(e){
   var t=e.target.closest('button'); if(!t)return;
   if(t.hasAttribute('data-del-target')){S.meta.targets=S.meta.targets.filter(function(x){return x.id!==t.getAttribute('data-del-target');});commit();return;}
   if(t.hasAttribute('data-del')){var p=t.getAttribute('data-del').split(':');S[p[0]]=S[p[0]].filter(function(x){return x.id!==p[1];});commit();return;}
+  if(t.hasAttribute('data-nologo')){S.meta.logo='';commit();return;}
   if(t.hasAttribute('data-download')){try{var bl=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),u=URL.createObjectURL(bl),a=document.createElement('a');a.href=u;a.download='social-desk-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},2000);document.getElementById('bk-ok').textContent='Backup downloaded.';}catch(err){document.getElementById('bk-ok').textContent='Download was blocked. Use Copy all data instead.';}return;}
   if(t.hasAttribute('data-copyall')){var bo=document.getElementById('bk-ok'),bt=document.getElementById('bk-t');
     try{navigator.clipboard.writeText(bt.value).then(function(){bo.textContent='Copied.';},function(){bt.select();bo.textContent='Copy was blocked. The text is selected, press Ctrl+C.';});}catch(err){bt.select();bo.textContent='Copy was blocked. The text is selected, press Ctrl+C.';}return;}
